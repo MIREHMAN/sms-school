@@ -8,6 +8,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import Grid from '@mui/material/Grid2';
+import CustomCard from '../components/CustomCard';
 
 const NAVIGATION = [
   {
@@ -43,7 +45,7 @@ const demoTheme = createTheme({
   },
 });
 
-function DemoPageContent({ pathname }) {
+function PageContent( ) {
   return (
     <Box
       sx={{
@@ -54,17 +56,31 @@ function DemoPageContent({ pathname }) {
         textAlign: 'center',
       }}
     >
-      <Typography>Dashboard content for {pathname}</Typography>
+      <Grid container xs={12} spacing={3}>
+        <Grid items xs={4}>
+        <CustomCard/>
+        </Grid>
+        <Grid items xs={4}>
+        <CustomCard/>
+        </Grid>
+        <Grid items xs={4}>
+        <CustomCard/>
+        </Grid>
+        <Grid items xs={4}>
+        <CustomCard/>
+        </Grid>
+      </Grid>
+      
     </Box>
   );
 }
 
-DemoPageContent.propTypes = {
+PageContent.propTypes = {
   pathname: PropTypes.string.isRequired,
 };
 
 function MyDashboardLayout(props) {
-  const { window } = props;
+  
 
   const [pathname, setPathname] = React.useState('/dashboard');
 
@@ -76,22 +92,20 @@ function MyDashboardLayout(props) {
     };
   }, [pathname]);
 
-  // Remove this const when copying and pasting into your project.
-  const demoWindow = window !== undefined ? window() : undefined;
 
   return (
     <AppProvider
       navigation={NAVIGATION}
       router={router}
       theme={demoTheme}
-      window={demoWindow}
+      
       branding={{
         logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
         title: 'SMS School',
       }}
     >
       <DashboardLayout defaultSidebarCollapsed>
-        <DemoPageContent pathname={pathname} />
+        <PageContent  />
       </DashboardLayout>
     </AppProvider>
   );
