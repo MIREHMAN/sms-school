@@ -1,11 +1,11 @@
 import React from 'react'
 import Grid from '@mui/material/Grid2'
-import DashboardLayout from './layouts/DashboardLayout'
+import MyDashboardLayout from './layouts/MyDashboardLayout'
 
 function App() {
   return (
     <Grid>
-      <DashboardLayout/>
+      <MyDashboardLayout/>
     </Grid>
   )
 }
